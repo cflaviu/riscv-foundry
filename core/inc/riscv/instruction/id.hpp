@@ -1,0 +1,237 @@
+#pragma once
+#ifndef PCH
+	#include <riscv/basic_types.hpp>
+	#include <optional>
+	#include <tuple>
+#endif
+
+namespace riscv
+{
+	namespace instruction
+	{
+		enum class id_t: std::uint8_t
+		{
+			// RV32I Base Instruction Set
+			lui,
+			auipc,
+			jal,
+			jalr,
+			beq,
+			bne,
+			blt,
+			bge,
+			bltu,
+			bgeu,
+			lb,
+			lh,
+			lw,
+			lbu,
+			lhu,
+			sb,
+			sh,
+			sw,
+			addi,
+			slti,
+			sltiu,
+			xori,
+			ori,
+			andi,
+			slli,
+			srli,
+			srai,
+			add,
+			sub,
+			sll,
+			slt,
+			sltu,
+			xor_,
+			srl,
+			sra,
+			or_,
+			and_,
+			fence,
+			ecall,
+			ebreak,
+
+			// RV64I Base Instruction Set
+			addiw,
+			addw,
+			ld,
+			lwu,
+			sd,
+			slliw,
+			sllw,
+			sraiw,
+			sraw,
+			srliw,
+			srlw,
+			subw,
+//			slli,
+//			srai,
+//			srli,
+
+			// RV32/RV64 Zifencei Standard Extension
+			fence_i,
+
+			// RV32/RV64 Zicsr Standard Extension
+			csrrw,
+			csrrs,
+			csrrc,
+			csrrwi,
+			csrrsi,
+			csrrci,
+
+			// RV32M Standard Extension
+			mul,
+			mulh,
+			mulhsu,
+			mulhu,
+			div,
+			divu,
+			rem,
+			remu,
+
+			// RV64M Standard Extension
+			mulw,
+			divw,
+			divuw,
+			remw,
+			remuw,
+
+			// RV32A Standard Extension
+			lr_w,
+			sc_w,
+			amoswap_w,
+			amoadd_w,
+			amoxor_w,
+			amoand_w,
+			amoor_w,
+			amomin_w,
+			amomax_w,
+			amominu_w,
+			amomaxu_w,
+
+			// RV64A Standard Extension
+			lr_d,
+			sc_d,
+			amoswap_d,
+			amoadd_d,
+			amoxor_d,
+			amoand_d,
+			amoor_d,
+			amomin_d,
+			amomax_d,
+			amominu_d,
+			amomaxu_d,
+
+			// RV32F Standard Extension
+			flw,
+			fsw,
+			fmadd_s,
+			fmsub_s,
+			fnmsub_s,
+			fnmadd_s,
+			fadd_s,
+			fsub_s,
+			fmul_s,
+			fdiv_s,
+			fsqrt_s,
+			fsgnj_s,
+			fsgnjn_s,
+			fsgnjx_s,
+			fmin_s,
+			fmax_s,
+			fcvt_w_s,
+			fcvt_wu_s,
+			fmv_x_w,
+			feq_s,
+			flt_s,
+			fle_s,
+			fclass_s,
+			fcvt_s_w,
+			fcvt_s_wu,
+			fmv_w_x,
+
+			// RV64F Standard Extension
+			fcvt_l_s,
+			fcvt_lu_s,
+			fcvt_s_l,
+			fcvt_s_lu,
+
+			// RV32D Standard Extension
+			fld,
+			fsd,
+			fmadd_d,
+			fmsub_d,
+			fnmsub_d,
+			fnmadd_d,
+			fadd_d,
+			fsub_d,
+			fmul_d,
+			fdiv_d,
+			fsqrt_d,
+			fsgnj_d,
+			fsgnjn_d,
+			fsgnjx_d,
+			fmin_d,
+			fmax_d,
+			fcvt_s_d,
+			fcvt_d_s,
+			feq_d,
+			flt_d,
+			fle_d,
+			fclass_d,
+			fcvt_w_d,
+			fcvt_wu_d,
+			fcvt_d_w,
+			fcvt_d_wu,
+
+			// RV64D Standard Extension
+			fcvt_l_d,
+			fcvt_lu_d,
+			fmv_x_d,
+			fcvt_d_l,
+			fcvt_d_lu,
+			fmv_d_x,
+
+			// RV32Q Standard Extension
+			flq,
+			fsq,
+			fmadd_q,
+			fmsub_q,
+			fnmsub_q,
+			fnmadd_q,
+			fadd_q,
+			fsub_q,
+			fmul_q,
+			fdiv_q,
+			fsqrt_q,
+			fsgnj_q,
+			fsgnjn_q,
+			fsgnjx_q,
+			fmin_q,
+			fmax_q,
+			fcvt_s_q,
+			fcvt_q_s,
+			fcvt_d_q,
+			fcvt_q_d,
+			feq_q,
+			flt_q,
+			fle_q,
+			fclass_q,
+			fcvt_w_q,
+			fcvt_wu_q,
+			fcvt_q_w,
+			fcvt_q_wu,
+
+			// RV64Q Standard Extension
+			fcvt_l_q,
+			fcvt_lu_q,
+			fcvt_q_l,
+			fcvt_q_lu,
+		};
+
+		const char* text_of(id_t id);
+		word_t default_word(id_t id);
+	}
+}
